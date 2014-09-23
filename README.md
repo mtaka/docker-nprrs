@@ -44,26 +44,26 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 This will mean:
 
-1. This image will be based on phusion/passenger-customizable
+(1). This image will be based on phusion/passenger-customizable
 
 _NOTES_. Don't forget tag :latest, you might get all previous versions of images if you forget, which might spend much disk space.
 _NOTES_. You can use passenger-full image, too.
 
-2. Put any variables.
+(2). Put any variables.
 
-3. This is passenger-docker's magic.
+(3). This is passenger-docker's magic.
 
-4. Installs Ruby, Python, and Node.js.
+(4). Installs Ruby, Python, and Node.js.
 
 _NOTES_. This step sets up the libraries for developing apps, which seems to take much time...(especially ruby related).
 
-5. Setup Redis server.
+(5). Setup Redis server.
 
 _NOTES_. You have to drop or comment out the 'RUN /build/redis.sh' line if you're using passenger-full: it has set up this already and job will stop, causing to bear some garbage containers.
 
-6. Copy the public key from local to the guest, then write it at the bottom of the authorized_keys file, then erase this file.
+(6). Copy the public key from local to the guest, then write it at the bottom of the authorized_keys file, then erase this file.
 
-7. Cleanup.
+(7). Cleanup.
 
 
 ### 3. Generate a SSH key
