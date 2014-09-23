@@ -1,4 +1,4 @@
-# docker-nprrs docker
+# docker-nprrs
 This is a docker directory for Nodejs, Python, Ruby, Redis, and Sshd, based on phusion/passenger-customizable.
 
 ## Procedures.
@@ -11,7 +11,9 @@ $cd docker-nprrs
 ```
 
 ### 2. Edit the Dockerfile.
+```
 $vim Dockerfile
+```
 ```{Dockerfile}
 # Using phusion/passenger-customizable as base image. (1)
 FROM phusion/passenger-customizable:latest
@@ -38,17 +40,29 @@ RUN cat /tmp/sshk.pub >> /root/.ssh/authorized_keys && rm -f /tmp/sshk.pub
 # Clean up APT (7)
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
+
+
 This will mean:
+
 1. This image will be based on phusion/passenger-customizable
+
 _NOTES_. Don't forget tag :latest, you might get all previous versions of images if you forget, which might spend much disk space.
 _NOTES_. You can use passenger-full image, too.
+
 2. Put any variables.
+
 3. This is passenger-docker's magic.
+
 4. Installs Ruby, Python, and Node.js.
+
 _NOTES_. This step sets up the libraries for developing apps, which seems to take much time...(especially ruby related).
+
 5. Setup Redis server.
+
 _NOTES_. You have to drop or comment out the 'RUN /build/redis.sh' line if you're using passenger-full: it has set up this already and job will stop, causing to bear some garbage containers.
+
 6. Copy the public key from local to the guest, then write it at the bottom of the authorized_keys file, then erase this file.
+
 7. Cleanup.
 
 
