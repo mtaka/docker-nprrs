@@ -1,11 +1,11 @@
 # Using phusion/passenger-customizable as base image.
-FROM phusion/passenger-customizable
+FROM phusion/passenger-customizable:latest
 
 # Environment variables.
 ENV HOME /root
 
 # baseimage-docker's init process.
-CMD ["/sbin/my_int"]
+CMD ["/sbin/my_init"]
 
 # Ruby, Python, and Nodejs
 RUN /build/ruby2.1.sh
